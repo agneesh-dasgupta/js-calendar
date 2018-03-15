@@ -1,10 +1,8 @@
 function loginAjax(event){
 	var username = document.getElementById("username").value; // Get the username from the form
 	var password = document.getElementById("password").value; // Get the password from the form
-
 	// Make a URL-encoded string for passing POST data:
 	var dataString = "username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password);
-	
 	var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
 	xmlHttp.open("POST", "login_ajax.php", true); // Starting a POST request (NEVER send passwords as GET variables!!!)
 	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // It's easy to forget this line for POST requests
