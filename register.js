@@ -1,4 +1,5 @@
 function registerAjax(event){
+	//a
 	var username = document.getElementById("newusername").value; // Get the username from the form
 	var password = document.getElementById("newpassword").value; // Get the password from the form
 	// Make a URL-encoded string for passing POST data:
