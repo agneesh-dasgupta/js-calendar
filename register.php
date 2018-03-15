@@ -1,4 +1,5 @@
 <?php
+//a
 require 'database.php';
 header("Content-Type: application/json");
     $username = $_POST['username'];
