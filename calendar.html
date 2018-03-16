@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html>
 <input type="text" id="username" placeholder="Username" />
 <input type="password" id="password" placeholder="Password" />
@@ -20,11 +20,13 @@
    var weeks = currentMonth.getWeeks();
 	for(var w in weeks){
 		var days = weeks[w].getDates();
-        calendar.innerHTML+= "<tr id='wk"+ weekscounter + "'>";
+        var newWeek = document.createElement("tr");
+        newWeek.setAttribute("id",weekscounter);
+        calendar.appendChild(newWeek);
 		// days contains normal JavaScript Date objects.
 		//alert("Week starting on "+days[0]);
 		for(var d in days){
-            var week = document.getElementById("wk"+weekscounter);
+            var week = document.getElementById(weekscounter);
             var newDay = document.createElement("td");
             newDay.appendChild(document.createTextNode(days[d].getDate()));
             week.appendChild(newDay);
