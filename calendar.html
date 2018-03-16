@@ -1,8 +1,41 @@
+
+<html>
 <input type="text" id="username" placeholder="Username" />
 <input type="password" id="password" placeholder="Password" />
 <button id="login_btn">Log In</button>
 <input type="text" id="newusername" placeholder="Username" />
 <input type="password" id="newpassword" placeholder="Password" />
 <button id="login_btn2">Register</button>
+<table id = "calendar">
+</table>
 <script type="text/javascript" src="ajax.js"></script>
+<script type = "text/javascript" src = "calendar.min.js"></script>
 <script type = "text/javascript" src = "register.js"></script><!-- load the JavaScript file -->
+<script>
+    var currentMonth = new Month(2018, 2);
+    makeCalendar();
+    function makeCalendar(){
+    var calendar = document.getElementById("calendar");
+    var weekscounter = 0;
+   var weeks = currentMonth.getWeeks();
+	for(var w in weeks){
+		var days = weeks[w].getDates();
+        calendar.innerHTML+= "<tr id='wk"+ weekscounter + "'>";
+		// days contains normal JavaScript Date objects.
+		//alert("Week starting on "+days[0]);
+		for(var d in days){
+            var week = document.getElementById("wk"+weekscounter);
+            var newDay = document.createElement("td");
+            newDay.appendChild(document.createTextNode(days[d].getDate()));
+            week.appendChild(newDay);
+			// You can see console.log() output in your JavaScript debugging tool, like Firebug,
+			// WebWit Inspector, or Dragonfly.
+			console.log(days[d].toISOString());
+
+		}
+        weekscounter++;
+	}
+}
+</script>
+
+</html>
