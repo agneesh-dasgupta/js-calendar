@@ -6,6 +6,8 @@
 <input type="text" id="newusername" placeholder="Username" />
 <input type="password" id="newpassword" placeholder="Password" />
 <button id="login_btn2">Register</button>
+<button id="last_month_btn">Last Month</button>
+<button id="next_month_btn">Next Month</button>
 <table id = "calendar">
 </table>
 <script type="text/javascript" src="ajax.js"></script>
@@ -15,29 +17,50 @@
     var currentMonth = new Month(2018, 2);
     makeCalendar();
     function makeCalendar(){
-    var calendar = document.getElementById("calendar");
-    var weekscounter = 0;
-   var weeks = currentMonth.getWeeks();
-	for(var w in weeks){
-		var days = weeks[w].getDates();
-        var newWeek = document.createElement("tr");
-        newWeek.setAttribute("id",weekscounter);
-        calendar.appendChild(newWeek);
-		// days contains normal JavaScript Date objects.
-		//alert("Week starting on "+days[0]);
-		for(var d in days){
-            var week = document.getElementById(weekscounter);
-            var newDay = document.createElement("td");
-            newDay.appendChild(document.createTextNode(days[d].getDate()));
-            week.appendChild(newDay);
-			// You can see console.log() output in your JavaScript debugging tool, like Firebug,
-			// WebWit Inspector, or Dragonfly.
-			console.log(days[d].toISOString());
+        var calendar = document.getElementById("calendar");
+        document.getElementById("calendar").innerHTML = "";
+        var weekscounter = 0;
+        var weeks = currentMonth.getWeeks();
+        for(var w in weeks){
+        	var days = weeks[w].getDates();
+            var newWeek = document.createElement("tr");
+            newWeek.setAttribute("id",weekscounter);
+            calendar.appendChild(newWeek);
+        	// days contains normal JavaScript Date objects.
+        	//alert("Week starting on "+days[0]);
+        	for(var d in days){
+                var week = document.getElementById(weekscounter);
+                var newDay = document.createElement("td");
+                newDay.appendChild(document.createTextNode(days[d].getDate()));
+                week.appendChild(newDay);
+        		// You can see console.log() output in your JavaScript debugging tool, like Firebug,
+        		// WebWit Inspector, or Dragonfly.
+        		console.log(days[d].toISOString());
 
-		}
-        weekscounter++;
-	}
-}
+        	}
+            weekscounter++;
+        }
+    }
+    
+    //changing the months using button
+    document.getElementById("next_month_btn").addEventListener("click", function(event){
+        currentMonth = currentMonth.nextMonth(); // Previous month would be currentMonth.prevMonth()
+        makeCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
+        alert("The new month is "+currentMonth.month+" "+currentMonth.year);
+    }, false);
+    
+      document.getElementById("last_month_btn").addEventListener("click", function(event){
+        currentMonth = currentMonth.prevMonth(); // Previous month would be currentMonth.prevMonth()
+        makeCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
+        alert("The new month is "+currentMonth.month+" "+currentMonth.year);
+    }, false);
+    
+    
+
+    
+    
+    
+    
 </script>
 
 </html>
