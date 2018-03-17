@@ -1,24 +1,76 @@
 <!DOCTYPE html>
 <html>
-<input type="text" id="username" placeholder="Username" />
+    <head> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title> Calendar </title></head>
+    <body>
+        <input type="text" id="username" placeholder="Username" />
 <input type="password" id="password" placeholder="Password" />
 <button id="login_btn">Log In</button>
 <input type="text" id="newusername" placeholder="Username" />
 <input type="password" id="newpassword" placeholder="Password" />
 <button id="login_btn2">Register</button>
+<br>
 <button id="last_month_btn">Last Month</button>
 <button id="next_month_btn">Next Month</button>
+<br>
+<div id = "addevent" hidden>
+    <input type = "text"  id = "title" name = "neweventtitle">
+    <input type = "text" id = "description" name = "neweventdescription">
+    <input type = "date" id = "date" name = "neweventdate">
+    <input type = "time" id = "time" name = "neweventtime">
+    <button id = "submitnewevent"> Add new event</button>
+</div>
+<h3 id = "currentmonth"></h3>
 <table id = "calendar">
 </table>
 <script type="text/javascript" src="ajax.js"></script>
 <script type = "text/javascript" src = "calendar.min.js"></script>
 <script type = "text/javascript" src = "register.js"></script><!-- load the JavaScript file -->
+<script type = "text/javascript" src = "addevent.js"></script>
 <script>
     var currentMonth = new Month(2018, 2);
     makeCalendar();
     function makeCalendar(){
+        var monthtext = null;
+        if(currentMonth.month==0){
+            monthtext = "January";
+        }
+        else if(currentMonth.month==1){
+            monthtext = "February";
+        }
+        else if(currentMonth.month==2){
+            monthtext = "March";
+        }
+        else if(currentMonth.month==3){
+            monthtext = "April";
+        }
+        else if(currentMonth.month==4){
+            monthtext = "May";
+        }
+        else if(currentMonth.month==5){
+            monthtext = "June";
+        }
+        else if(currentMonth.month==6){
+            monthtext = "July";
+        }
+        else if(currentMonth.month==7){
+            monthtext = "August";
+        }
+        else if(currentMonth.month==8){
+            monthtext = "September";
+        }
+        else if(currentMonth.month==9){
+            monthtext = "October";
+        }
+        else if(currentMonth.month==10){
+            monthtext = "February";
+        }
+        else if(currentMonth.month==11){
+            monthtext = "December";
+        }
+        document.getElementById("currentmonth").textContent = monthtext + " " + currentMonth.year;
         var calendar = document.getElementById("calendar");
-        document.getElementById("calendar").innerHTML = "";
+        calendar.innerHTML = "";
         var weekscounter = 0;
         var weeks = currentMonth.getWeeks();
         for(var w in weeks){
@@ -35,7 +87,6 @@
                 week.appendChild(newDay);
         		// You can see console.log() output in your JavaScript debugging tool, like Firebug,
         		// WebWit Inspector, or Dragonfly.
-        		console.log(days[d].toISOString());
 
         	}
             weekscounter++;
@@ -46,21 +97,17 @@
     document.getElementById("next_month_btn").addEventListener("click", function(event){
         currentMonth = currentMonth.nextMonth(); // Previous month would be currentMonth.prevMonth()
         makeCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
-        alert("The new month is "+currentMonth.month+" "+currentMonth.year);
+       // alert("The new month is "+currentMonth.month+" "+currentMonth.year);
     }, false);
     
       document.getElementById("last_month_btn").addEventListener("click", function(event){
         currentMonth = currentMonth.prevMonth(); // Previous month would be currentMonth.prevMonth()
         makeCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
-        alert("The new month is "+currentMonth.month+" "+currentMonth.year);
+        //alert("The new month is "+currentMonth.month+" "+currentMonth.year);
     }, false);
     
-    
-
-    
-    
-    
-    
 </script>
+    </body>
+
 
 </html>
