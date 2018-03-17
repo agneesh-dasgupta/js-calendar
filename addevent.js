@@ -2,9 +2,10 @@ function addEventAjax(event){
     var eventtitle = document.getElementById("title").value; // Get the username from the form
 	var eventdescription = document.getElementById("description").value;
     var eventdate = document.getElementById("date").value;
-    var eventyear = parseInt(eventdate.substring(0,3));
-    var eventmonth = parseInt(eventdate.substring(5,6));
-    var eventday = parseInt(eventdate.substring(8,9));
+    console.log(eventdate);
+    var eventyear = parseInt(eventdate.substring(0,4));
+    var eventmonth = parseInt(eventdate.substring(5,7));
+    var eventday = parseInt(eventdate.substring(8,10));
     var dataString = "eventtitle=" + encodeURIComponent(eventtitle) + "&eventdescription=" + encodeURIComponent(eventdescription)+ "&eventyear="+encodeURIComponent(eventyear)+ "&eventmonth="+encodeURIComponent(eventmonth)+"&eventday="+encodeURIComponent(eventday);
     var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
 	xmlHttp.open("POST", "addevent.php", true); // Starting a POST request (NEVER send passwords as GET variables!!!)

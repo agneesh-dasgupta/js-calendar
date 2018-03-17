@@ -1,5 +1,6 @@
 <?php
 require 'database.php';
+session_start();
 header("Content-Type: application/json");
 $username = $_SESSION['username'];
 $eventtitle = $_POST['eventtitle'];
