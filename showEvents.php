@@ -18,7 +18,7 @@ $stmt = $mysqli->prepare("select eventTitle, eventMonth, eventDay from events wh
     $eventArray = array();
     while($stmt->fetch()){
 		//check to see if username is unique
-        $eventArray = array ($eventMonth-1 + "-" + $eventDay, $eventTitle);
+        $eventArray = array (($eventMonth-1) + "-" + $eventDay, $eventTitle);
         $index++;
        
     }
