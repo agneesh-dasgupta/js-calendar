@@ -4,7 +4,7 @@ session_start();
 header("Content-Type: application/json");
 $username = $_SESSION['username'];
 $currentMonth = $_POST['currentMonth'];
-$stmt = $mysqli->prepare("select eventTitle, eventMonth, eventDay from events where username=? and eventMonth=?");
+$stmt = $mysqli->prepare("select eventid, eventTitle, eventMonth, eventDay from events where username=? and eventMonth=?");
     if(!$stmt){
         printf("Query Prep Failed: %s\n", $mysqli->error);
         exit;
@@ -16,6 +16,7 @@ $stmt = $mysqli->prepare("select eventTitle, eventMonth, eventDay from events wh
     $index = 0;
     while($row=$result->fetch_assoc()){
         $event = array(
+            "eventid" => $row['eventid'];
             "eventMonth" => $row['eventMonth'],
             "eventTitle" => $row['eventTitle'],
             "eventDay" => $row['eventDay']

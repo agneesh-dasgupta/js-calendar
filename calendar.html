@@ -30,7 +30,6 @@
 <script>
     var currentMonth = new Month(2018, 2);
     makeCalendar();
-    showEvents();
     function makeCalendar(){
         var monthtext = null;
         if(currentMonth.month==0){
@@ -108,14 +107,30 @@
         xmlHttp.addEventListener("load", function(event){
 		var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
         console.log(jsonData[0]);
-        console.log(month);
-		/*for(var a = 0; a<jsonData.size; a++){
+        console.log(jsonData[0].eventMonth);
+    
+		for(var a = 0; a<jsonData.length; a++){
+            var compareString = (jsonData[a].eventMonth-1) + "-" + jsonData[a].eventDay;
+            console.log(compareString);
             for(var d in daysinMonth){
-                if(jsonData[a][0]==daysinMonth[d].id){
-                    daysinMonth[d].appendChild(jsonData[a][1]);
+                if(compareString==daysinMonth[d].id){
+                    placeButton = document.createElement("input");
+                    editButton = document.createElement("input");
+                    placeButton.type = "button";
+                    editButton.type = "button";
+                    placeButton.value = "delete";
+                    editButton.value = "edit";
+                    placeButton.id = jsonData[a].eventid;
+                    editButton.class = jsonData[a].eventid;
+                    daysinMonth[d].innerHTML += jsonData[a].eventTitle;
+                    daysinMonth[d].appendChild(placeButton);
+                    daysinMonth[d].appendChild(editButton);
+                    
+                    
+                    
                 }
             }
-        }*/
+        }
 	}, false); // Bind the callback to the load event
         xmlHttp.send(dataString); // Send the data
     }
