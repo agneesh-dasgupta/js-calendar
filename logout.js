@@ -7,7 +7,8 @@ function logoutAjax(event){
 		if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
 			alert("You have been logged out");
             $("#addevent").hide();
-            //$("#logout").hide();
+            $("#logout").hide();
+            makeCalendar();
 		}else{
 			alert("You were not logged out.  "+jsonData.message);
 		}
