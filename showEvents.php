@@ -2,9 +2,7 @@
 require 'database.php';
 session_start();
 header("Content-Type: application/json");
-if(isset($_SESSION['username'])){
-    $username = $_SESSION['username'];
-}
+$username = $_SESSION['username'];
 $currentMonth = $_POST['currentMonth'];
 $stmt = $mysqli->prepare("select eventid, eventTitle, eventMonth, eventDay from events where username=? and eventMonth=?");
     if(!$stmt){
@@ -21,7 +19,8 @@ $stmt = $mysqli->prepare("select eventid, eventTitle, eventMonth, eventDay from 
             "eventid" => $row['eventid'],
             "eventMonth" => $row['eventMonth'],
             "eventTitle" => $row['eventTitle'],
-            "eventDay" => $row['eventDay']
+            "eventDay" => $row['eventDay'],
+            "currentUser" => $username
         );
         $eventArray[$index] = $event;
         $index++;

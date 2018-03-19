@@ -12,6 +12,9 @@ function loginAjax(event){
 			alert("You've been Logged In!");
 			$("#addevent").show();
 			$("#logout").show();
+			$("#username").val('');
+			$("#password").val('');
+			makeCalendar();
 		}else{
 			alert("You were not logged in.  "+jsonData.message);
 		}
