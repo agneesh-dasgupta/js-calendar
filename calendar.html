@@ -20,6 +20,10 @@
     <input type = "time" id = "time" name = "neweventtime">
     <button id = "submitnewevent"> Add new event</button>
 </div>
+<br>
+<div id = "logout" hidden>
+    <button id = "logout_button"> Log Out</button>
+</div>
 <h3 id = "currentmonth"></h3>
 <table id = "calendar">
 </table>
@@ -27,12 +31,13 @@
 <script type = "text/javascript" src = "calendar.min.js"></script>
 <script type = "text/javascript" src = "register.js"></script><!-- load the JavaScript file -->
 <script type = "text/javascript" src = "addevent.js"></script>
+<script type = "text/javascript" src = "logout.js"></script>
 <script>
     var currentMonth = new Month(2018, 2);
     makeCalendar();
     function makeCalendar(){
         var monthtext = null;
-        if(currentMonth.month==0){
+        if(currentMonth.month===0){
             monthtext = "January";
         }
         else if(currentMonth.month==1){
@@ -74,14 +79,14 @@
         var weekscounter = 0;
         var dayscounter =0;
         var weeks = currentMonth.getWeeks();
-        for(var w in weeks){
+        for(var w = 0; w<weeks.length; w++){
         	var days = weeks[w].getDates();
             var newWeek = document.createElement("tr");
             newWeek.setAttribute("id",weekscounter);
             calendar.appendChild(newWeek);
         	// days contains normal JavaScript Date objects.
         	//alert("Week starting on "+days[0]);
-        	for(var d in days){
+        	for(var d = 0; d<days.length; d++){
                 var week = document.getElementById(weekscounter);
                 var newDay = document.createElement("td");
                 var dayID = days[d].getMonth() +"-"+ days[d].getDate();
@@ -125,9 +130,6 @@
                     daysinMonth[d].innerHTML += jsonData[a].eventTitle;
                     daysinMonth[d].appendChild(placeButton);
                     daysinMonth[d].appendChild(editButton);
-                    
-                    
-                    
                 }
             }
         }

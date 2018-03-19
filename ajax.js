@@ -11,6 +11,7 @@ function loginAjax(event){
 		if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
 			alert("You've been Logged In!");
 			$("#addevent").show();
+			$("#logout").show();
 		}else{
 			alert("You were not logged in.  "+jsonData.message);
 		}

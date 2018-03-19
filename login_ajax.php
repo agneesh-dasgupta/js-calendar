@@ -5,8 +5,6 @@ $username = $_POST['username'];
 $stmt = $mysqli->prepare("SELECT COUNT(*), username, password FROM users WHERE username=?");
 // Bind the parameter
 $stmt->bind_param('s', $username);
-//$isGuest = (string) $_POST['isGuest'];
-//$_SESSION['isGuest'] = $isGuest;
 $stmt->execute();
 $stmt->bind_result($cnt, $user_id, $pwd_hash);
 $stmt->fetch();
@@ -15,7 +13,6 @@ if($cnt == 1 && password_verify($password_guess, $pwd_hash)){
 	// Login succeeded!
 	session_start();
 	$_SESSION['username'] = $user_id;
-	//$_SESSION['token'] = substr(md5(rand()), 0, 10);
 	echo json_encode(array(
 	"success" => true
 	));

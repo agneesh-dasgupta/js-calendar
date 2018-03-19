@@ -3,8 +3,6 @@ function addEventAjax(event){
 	var eventdescription = document.getElementById("description").value;
     var eventdate = document.getElementById("date").value;
     var eventtime = document.getElementById("time").value;
-    console.log(eventdate);
-    console.log(eventtime);
     var eventyear = parseInt(eventdate.substring(0,4));
     var eventmonth = parseInt(eventdate.substring(5,7));
     var eventday = parseInt(eventdate.substring(8,10));
@@ -17,11 +15,12 @@ function addEventAjax(event){
 		if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
 			alert("Event successfully added");
 			$("#addevent").show();
+            $("#logout").show();
 		}else{
 			alert("Event not added  "+jsonData.message);
 		}
 	}, false); // Bind the callback to the load event
 	xmlHttp.send(dataString); // Send the data
-    
+    makeCalendar();
 }
 document.getElementById("submitnewevent").addEventListener("click", addEventAjax, false);
