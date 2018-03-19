@@ -96,6 +96,7 @@
         	}
             weekscounter++;
         }
+        showEvents();
     }
     function showEvents(){
         var daysinMonth = document.getElementsByTagName("td");
@@ -106,7 +107,8 @@
         xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlHttp.addEventListener("load", function(event){
 		var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
-       // console.log(jsonData[0].eventMonth);
+        console.log(jsonData[0]);
+        console.log(month);
 		/*for(var a = 0; a<jsonData.size; a++){
             for(var d in daysinMonth){
                 if(jsonData[a][0]==daysinMonth[d].id){
