@@ -1,0 +1,31 @@
+#currentMonth{
+    font-weight: bold;
+}
+
+h1{
+    font-weight: bold;
+    text-align: center;
+}
+
+h4{
+    margin-bottom: 10px;
+}
+
+#loginBox{
+    float: left;
+    height: 150px;
+    width: 200px;
+    background-color: blue;
+}
+
+
+#registerBox{
+    display: inline-block;
+    height: 150px;
+    width: 200px;
+    background-color: red;
+}
+
+#monthButtons{
+    
+}

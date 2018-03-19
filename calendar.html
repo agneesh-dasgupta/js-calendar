@@ -1,155 +1,168 @@
 <!DOCTYPE html>
 <html>
-    <head> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <title> Calendar </title></head>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <title> Calendar </title>
+        <link href="calendarStyles.css" rel="stylesheet">
+    </head>
     <body>
-        <input type="text" id="username" placeholder="Username" />
-<input type="password" id="password" placeholder="Password" />
-<button id="login_btn">Log In</button>
-<input type="text" id="newusername" placeholder="Username" />
-<input type="password" id="newpassword" placeholder="Password" />
-<button id="login_btn2">Register</button>
-<br>
-<button id="last_month_btn">Last Month</button>
-<button id="next_month_btn">Next Month</button>
-<br>
-<div id = "addevent" hidden>
-    <input type = "text"  id = "title" name = "neweventtitle">
-    <input type = "text" id = "description" name = "neweventdescription">
-    <input type = "date" id = "date" name = "neweventdate">
-    <input type = "time" id = "time" name = "neweventtime">
-    <button id = "submitnewevent"> Add new event</button>
-</div>
-<br>
-<div id = "logout" hidden>
-    <button id = "logout_button"> Log Out</button>
-</div>
-<h3 id = "currentmonth"></h3>
-<table id = "calendar">
-</table>
-<script type="text/javascript" src="ajax.js"></script>
-<script type = "text/javascript" src = "calendar.min.js"></script>
-<script type = "text/javascript" src = "register.js"></script><!-- load the JavaScript file -->
-<script type = "text/javascript" src = "addevent.js"></script>
-<script type = "text/javascript" src = "logout.js"></script>
-<script>
-    var currentMonth = new Month(2018, 2);
-    makeCalendar();
-    function makeCalendar(){
-        var monthtext = null;
-        if(currentMonth.month===0){
-            monthtext = "January";
-        }
-        else if(currentMonth.month==1){
-            monthtext = "February";
-        }
-        else if(currentMonth.month==2){
-            monthtext = "March";
-        }
-        else if(currentMonth.month==3){
-            monthtext = "April";
-        }
-        else if(currentMonth.month==4){
-            monthtext = "May";
-        }
-        else if(currentMonth.month==5){
-            monthtext = "June";
-        }
-        else if(currentMonth.month==6){
-            monthtext = "July";
-        }
-        else if(currentMonth.month==7){
-            monthtext = "August";
-        }
-        else if(currentMonth.month==8){
-            monthtext = "September";
-        }
-        else if(currentMonth.month==9){
-            monthtext = "October";
-        }
-        else if(currentMonth.month==10){
-            monthtext = "February";
-        }
-        else if(currentMonth.month==11){
-            monthtext = "December";
-        }
-        document.getElementById("currentmonth").textContent = monthtext + " " + currentMonth.year;
-        var calendar = document.getElementById("calendar");
-        calendar.innerHTML = "";
-        var weekscounter = 0;
-        var dayscounter =0;
-        var weeks = currentMonth.getWeeks();
-        for(var w = 0; w<weeks.length; w++){
-        	var days = weeks[w].getDates();
-            var newWeek = document.createElement("tr");
-            newWeek.setAttribute("id",weekscounter);
-            calendar.appendChild(newWeek);
-        	// days contains normal JavaScript Date objects.
-        	//alert("Week starting on "+days[0]);
-        	for(var d = 0; d<days.length; d++){
-                var week = document.getElementById(weekscounter);
-                var newDay = document.createElement("td");
-                var dayID = days[d].getMonth() +"-"+ days[d].getDate();
-                newDay.setAttribute("id", dayID);
-                newDay.appendChild(document.createTextNode(days[d].getDate()));
-                week.appendChild(newDay);
-        		// You can see console.log() output in your JavaScript debugging tool, like Firebug,
-        		// WebWit Inspector, or Dragonfly.
-                dayscounter++;
-                
-        	}
-            weekscounter++;
-        }
-        showEvents();
-    }
-    function showEvents(){
-        var daysinMonth = document.getElementsByTagName("td");
-        var month = currentMonth.month + 1;
-        var dataString = "currentMonth=" + encodeURIComponent(month);
-        var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
-        xmlHttp.open("POST", "showEvents.php", true); // Starting a POST request (NEVER send passwords as GET variables!!!)
-        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xmlHttp.addEventListener("load", function(event){
-		var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
-        console.log(jsonData[0]);
-        console.log(jsonData[0].eventMonth);
-    
-		for(var a = 0; a<jsonData.length; a++){
-            var compareString = (jsonData[a].eventMonth-1) + "-" + jsonData[a].eventDay;
-            console.log(compareString);
-            for(var d in daysinMonth){
-                if(compareString==daysinMonth[d].id){
-                    placeButton = document.createElement("input");
-                    editButton = document.createElement("input");
-                    placeButton.type = "button";
-                    editButton.type = "button";
-                    placeButton.value = "delete";
-                    editButton.value = "edit";
-                    placeButton.id = jsonData[a].eventid;
-                    editButton.class = jsonData[a].eventid;
-                    daysinMonth[d].innerHTML += jsonData[a].eventTitle;
-                    daysinMonth[d].appendChild(placeButton);
-                    daysinMonth[d].appendChild(editButton);
+        <h1>AD-DA Calendar</h1>
+        <div id="loginBox">
+            <h4>Login existing User:</h4>
+            <input type="text" id="username" placeholder="Username" />
+            <input type="password" id="password" placeholder="Password" />
+            <button id="login_btn">Log In</button>
+        </div>
+        <div id="registerBox">
+            <h4>Register new User:</h4>
+            <input type="text" id="newusername" placeholder="Username" />
+            <input type="password" id="newpassword" placeholder="Password" />
+            <button id="login_btn2">Register</button>
+        </div>
+        <br>
+        <div id="monthButtons">
+            <h4>Use buttons to navigate months in Calendar</h4>
+            <button id="last_month_btn">Last Month</button>
+            <button id="next_month_btn">Next Month</button>
+        </div>
+        <br>
+        <div id = "addevent" hidden>
+            <input type = "text"  id = "title" name = "neweventtitle">
+            <input type = "text" id = "description" name = "neweventdescription">
+            <input type = "date" id = "date" name = "neweventdate">
+            <input type = "time" id = "time" name = "neweventtime">
+            <button id = "submitnewevent"> Add new event</button>
+        </div>
+        <br>
+        <div id = "logout" hidden>
+            <button id = "logout_button"> Log Out</button>
+        </div>
+        <h3 id = "currentmonth"></h3>
+        <table id = "calendar">
+        </table>
+        <script type="text/javascript" src="ajax.js"></script>
+        <script type = "text/javascript" src = "calendar.min.js"></script>
+        <script type = "text/javascript" src = "register.js"></script><!-- load the JavaScript file -->
+        <script type = "text/javascript" src = "addevent.js"></script>
+        <script type = "text/javascript" src = "logout.js"></script>
+        
+        <script>
+            var currentMonth = new Month(2018, 2);
+            makeCalendar();
+            function makeCalendar(){
+                var monthtext = null;
+                if(currentMonth.month===0){
+                    monthtext = "January";
                 }
+                else if(currentMonth.month==1){
+                    monthtext = "February";
+                }
+                else if(currentMonth.month==2){
+                    monthtext = "March";
+                }
+                else if(currentMonth.month==3){
+                    monthtext = "April";
+                }
+                else if(currentMonth.month==4){
+                    monthtext = "May";
+                }
+                else if(currentMonth.month==5){
+                    monthtext = "June";
+                }
+                else if(currentMonth.month==6){
+                    monthtext = "July";
+                }
+                else if(currentMonth.month==7){
+                    monthtext = "August";
+                }
+                else if(currentMonth.month==8){
+                    monthtext = "September";
+                }
+                else if(currentMonth.month==9){
+                    monthtext = "October";
+                }
+                else if(currentMonth.month==10){
+                    monthtext = "February";
+                }
+                else if(currentMonth.month==11){
+                    monthtext = "December";
+                }
+                document.getElementById("currentmonth").textContent = monthtext + " " + currentMonth.year;
+                var calendar = document.getElementById("calendar");
+                calendar.innerHTML = "";
+                var weekscounter = 0;
+                var dayscounter =0;
+                var weeks = currentMonth.getWeeks();
+                for(var w = 0; w<weeks.length; w++){
+                	var days = weeks[w].getDates();
+                    var newWeek = document.createElement("tr");
+                    newWeek.setAttribute("id",weekscounter);
+                    calendar.appendChild(newWeek);
+                	// days contains normal JavaScript Date objects.
+                	//alert("Week starting on "+days[0]);
+                	for(var d = 0; d<days.length; d++){
+                        var week = document.getElementById(weekscounter);
+                        var newDay = document.createElement("td");
+                        var dayID = days[d].getMonth() +"-"+ days[d].getDate();
+                        newDay.setAttribute("id", dayID);
+                        newDay.appendChild(document.createTextNode(days[d].getDate()));
+                        week.appendChild(newDay);
+                		// You can see console.log() output in your JavaScript debugging tool, like Firebug,
+                		// WebWit Inspector, or Dragonfly.
+                        dayscounter++;            
+                    }
+                    weekscounter++;
+                }   
+                showEvents();
+            }   
+            function showEvents(){
+                var daysinMonth = document.getElementsByTagName("td");
+                var month = currentMonth.month + 1;
+                var dataString = "currentMonth=" + encodeURIComponent(month);
+                var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
+                xmlHttp.open("POST", "showEvents.php", true); // Starting a POST request (NEVER send passwords as GET variables!!!)
+                xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xmlHttp.addEventListener("load", function(event){
+            	var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
+                console.log(jsonData[0]);
+                console.log(jsonData[0].eventMonth);
+    
+            	for(var a = 0; a<jsonData.length; a++){
+                    var compareString = (jsonData[a].eventMonth-1) + "-" + jsonData[a].eventDay;
+                    console.log(compareString);
+                    for(var d in daysinMonth){
+                        if(compareString==daysinMonth[d].id){
+                            placeButton = document.createElement("input");
+                            editButton = document.createElement("input");
+                            placeButton.type = "button";
+                            editButton.type = "button";
+                            placeButton.value = "delete";
+                            editButton.value = "edit";
+                            placeButton.id = jsonData[a].eventid;
+                            editButton.class = jsonData[a].eventid;
+                            daysinMonth[d].innerHTML += jsonData[a].eventTitle;
+                            daysinMonth[d].appendChild(placeButton);
+                            daysinMonth[d].appendChild(editButton);
+                        }
+                    }
+                }
+            }, false); // Bind the callback to the load event
+                xmlHttp.send(dataString); // Send the data
             }
-        }
-	}, false); // Bind the callback to the load event
-        xmlHttp.send(dataString); // Send the data
-    }
-    //changing the months using button
-    document.getElementById("next_month_btn").addEventListener("click", function(event){
-        currentMonth = currentMonth.nextMonth(); // Previous month would be currentMonth.prevMonth()
-        makeCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
-       // alert("The new month is "+currentMonth.month+" "+currentMonth.year);
-    }, false);
+                //changing the months using button
+            document.getElementById("next_month_btn").addEventListener("click", function(event){
+                currentMonth = currentMonth.nextMonth(); // Previous month would be currentMonth.prevMonth()
+                makeCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
+               // alert("The new month is "+currentMonth.month+" "+currentMonth.year);
+            }, false);
     
-      document.getElementById("last_month_btn").addEventListener("click", function(event){
-        currentMonth = currentMonth.prevMonth(); // Previous month would be currentMonth.prevMonth()
-        makeCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
-        //alert("The new month is "+currentMonth.month+" "+currentMonth.year);
-    }, false);
+            document.getElementById("last_month_btn").addEventListener("click", function(event){
+              currentMonth = currentMonth.prevMonth(); // Previous month would be currentMonth.prevMonth()
+              makeCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
+              //alert("The new month is "+currentMonth.month+" "+currentMonth.year);
+            }, false);
     
-</script>
+        </script>
     </body>
 
 
