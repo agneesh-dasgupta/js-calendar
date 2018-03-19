@@ -19,24 +19,25 @@
             <input type="password" id="newpassword" placeholder="Password" />
             <button id="login_btn2">Register</button>
         </div>
-        <br>
-        <div id="monthButtons">
-            <h4>Use buttons to navigate months in Calendar</h4>
-            <button id="last_month_btn">Last Month</button>
-            <button id="next_month_btn">Next Month</button>
+        <div id = "logout" hidden>
+            <button id = "logout_button"> Log Out</button>
         </div>
-        <br>
         <div id = "addevent" hidden>
-            <input type = "text"  id = "title" name = "neweventtitle">
-            <input type = "text" id = "description" name = "neweventdescription">
+            <h4>Add new Event:</h4>
+            <input type = "text"  id = "title" name = "neweventtitle" placeholder="Event Title">
+            <input type = "text" id = "description" name = "neweventdescription" placeholder="Event Description">
             <input type = "date" id = "date" name = "neweventdate">
             <input type = "time" id = "time" name = "neweventtime">
             <button id = "submitnewevent"> Add new event</button>
         </div>
         <br>
-        <div id = "logout" hidden>
-            <button id = "logout_button"> Log Out</button>
+        <div id="monthButtons">
+            <h4>Use buttons to navigate months in Calendar</h4>
+            <button id="last_month_btn"></button>
+            <button id="next_month_btn"></button>
         </div>
+        <br>
+        
         <h3 id = "currentmonth"></h3>
         <table id = "calendar">
         </table>
@@ -140,6 +141,8 @@
                             editButton.value = "edit";
                             placeButton.id = jsonData[a].eventid;
                             editButton.class = jsonData[a].eventid;
+                            breakTag = document.createElement("br");
+                            daysinMonth[d].appendChild(breakTag);
                             daysinMonth[d].innerHTML += jsonData[a].eventTitle;
                             daysinMonth[d].appendChild(placeButton);
                             daysinMonth[d].appendChild(editButton);

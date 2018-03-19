@@ -1,5 +1,8 @@
-#currentMonth{
+h3{
     font-weight: bold;
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 10px;
 }
 
 h1{
@@ -9,6 +12,7 @@ h1{
 
 h4{
     margin-bottom: 10px;
+    text-align: center;
 }
 
 #loginBox{
@@ -26,6 +30,67 @@ h4{
     background-color: red;
 }
 
+button{
+    cursor:pointer;
+}
+
 #monthButtons{
-    
+    width: 150px;
+}
+
+#last_month_btn{
+    margin: auto;
+    background: url('leftButton.png') center no-repeat;
+    border: none;
+    height: 25px;
+    width: 50px;
+    opacity: .7;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#last_month_btn:hover{
+    opacity: 1;
+}
+
+#next_month_btn{
+    margin: auto;
+    background: url('rightButton.png') center no-repeat;
+    border: none;
+    height: 25px;
+    width: 50px;
+    opacity: .7;
+}
+
+#next_month_btn:hover{
+    opacity: 1;
+}
+
+#addevent{
+    width: 400px;
+}
+
+#addevent h4{
+    margin-left: -10px;
+}
+
+#logout{
+    display: inline-block;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, tr, td{
+    border: 2px solid black;
+}
+td{
+    width: 14.285%;
+    font-weight: bold;
+}
+
+tr{
+    height: 100px;
 }
