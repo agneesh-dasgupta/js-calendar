@@ -8,9 +8,37 @@ $eventdescription = null;
 if(isset($_POST['eventdescription'])){
     $eventdescription = $_POST['eventdescription'];
 }
-$eventyear = $_POST['eventyear'];
-$eventmonth = $_POST['eventmonth'];
-$eventday = $_POST['eventday'];
+$eventyear = (int) $_POST['eventyear'];
+$eventmonth = (int) $_POST['eventmonth'];
+$eventday = (int) $_POST['eventday'];
+
+if( !preg_match('/^[\w_\-]+$/', $username) ){
+        echo json_encode(array(
+		"success" => false,
+		"message" => "Incorrect Username or Password"
+	));
+	exit;
+}
+
+if( !preg_match('/^[\w_\-]+$/', $eventTitle) ){
+        echo json_encode(array(
+		"success" => false,
+		"message" => "Incorrect Username or Password"
+	));
+	exit;
+
+}
+
+if( !preg_match('/^[\w_\-]+$/', $eventDescription) ){
+        echo json_encode(array(
+		"success" => false,
+		"message" => "Incorrect Username or Password"
+	));
+	exit;
+
+}
+
+
 $stmt = $mysqli->prepare("insert into events (username, eventTitle, eventYear, eventMonth, eventDay, eventDescription) values (?, ?, ?, ?, ?, ?)");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);

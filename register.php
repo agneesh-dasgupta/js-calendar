@@ -32,10 +32,10 @@ header("Content-Type: application/json");
 		//check to see if username is unique
         if(strcmp($founduser,$username)==0) {
             echo json_encode(array(
-		"success" => false,
-		"message" => "Username is already taken"
-        ));
-	exit;
+                "success" => false,
+                "message" => "Username is already taken"
+            ));
+            exit;
         }
     }
     $stmt->close();
