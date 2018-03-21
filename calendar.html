@@ -130,7 +130,6 @@
     
             	for(var a = 0; a<jsonData.length; a++){
                     var compareString = (jsonData[a].eventMonth-1) + "-" + jsonData[a].eventDay;
-                    console.log(compareString);
                     for(var d in daysinMonth){
                         if(compareString==daysinMonth[d].id){
                             placeButton = document.createElement("input");
@@ -140,7 +139,11 @@
                             placeButton.value = "delete";
                             editButton.value = "edit";
                             placeButton.id = jsonData[a].eventid;
-                            editButton.class = jsonData[a].eventid;
+                            placeButton.className = "d";
+                           placeButton.addEventListener("click", function(event){
+                                alert(event.target.id);
+                                }, false);
+                            editButton.className = jsonData[a].eventid;
                             breakTag = document.createElement("br");
                             daysinMonth[d].appendChild(breakTag);
                             daysinMonth[d].innerHTML += jsonData[a].eventTitle;
@@ -164,6 +167,7 @@
               makeCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
               //alert("The new month is "+currentMonth.month+" "+currentMonth.year);
             }, false);
+        
     
         </script>
     </body>

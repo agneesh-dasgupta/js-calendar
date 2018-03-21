@@ -13,14 +13,6 @@ if( !preg_match('/^[\w_\-]+$/', $username) ){
 	exit;
 }
 
-if( !preg_match('/^[\w_\-]+$/', $currentMonth) ){
-        echo json_encode(array(
-		"success" => false,
-		"message" => "Incorrect Username or Password"
-	));
-	exit;
-}
-
 $stmt = $mysqli->prepare("select eventid, eventTitle, eventMonth, eventDay from events where username=? and eventMonth=?");
     if(!$stmt){
         printf("Query Prep Failed: %s\n", $mysqli->error);

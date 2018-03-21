@@ -20,24 +20,6 @@ if( !preg_match('/^[\w_\-]+$/', $username) ){
 	exit;
 }
 
-if( !preg_match('/^[\w_\-]+$/', $eventTitle) ){
-        echo json_encode(array(
-		"success" => false,
-		"message" => "Incorrect Username or Password"
-	));
-	exit;
-
-}
-
-if( !preg_match('/^[\w_\-]+$/', $eventDescription) ){
-        echo json_encode(array(
-		"success" => false,
-		"message" => "Incorrect Username or Password"
-	));
-	exit;
-
-}
-
 
 $stmt = $mysqli->prepare("insert into events (username, eventTitle, eventYear, eventMonth, eventDay, eventDescription) values (?, ?, ?, ?, ?, ?)");
 if(!$stmt){

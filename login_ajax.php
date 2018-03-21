@@ -19,14 +19,6 @@ $stmt->bind_result($cnt, $user_id, $pwd_hash);
 $stmt->fetch();
 $password_guess = $_POST['password'];
 
-if( !preg_match('/^[\w_\-]+$/', $password_guess) ){
-        echo json_encode(array(
-		"success" => false,
-		"message" => "Incorrect Username or Password"
-	));
-	exit;
-}
-
 if($cnt == 1 && password_verify($password_guess, $pwd_hash)){
 	// Login succeeded!
 	session_start();
