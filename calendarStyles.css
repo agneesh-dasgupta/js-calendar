@@ -1,3 +1,7 @@
+body{
+    background-color: #83cee2;
+}
+
 h3{
     font-weight: bold;
     text-align: center;
@@ -19,15 +23,19 @@ h4{
     float: left;
     height: 150px;
     width: 200px;
-    background-color: blue;
+    margin: 10px;
+    background-color: #a5b3b7;
+    border: dotted;
 }
 
 
 #registerBox{
     display: inline-block;
+    margin: 10px;
     height: 150px;
     width: 200px;
-    background-color: red;
+    background-color: #a5b3b7;
+    border: dotted;
 }
 
 button{
@@ -36,6 +44,10 @@ button{
 
 #monthButtons{
     width: 150px;
+    margin: 10px;
+    background-color: #a5b3b7;
+    border: dotted;
+    display: inline-block;
 }
 
 #last_month_btn{
@@ -99,4 +111,12 @@ tr{
     display: inline-block;
     width: 200px;
     height: 150px;
+    margin: 10px;
+    background-color: #a5b3b7;
+    border: dotted;
+}
+
+#logout{
+    background-color: #a5b3b7;
+    border: dotted;
 }
