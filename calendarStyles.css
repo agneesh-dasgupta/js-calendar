@@ -94,3 +94,9 @@ td{
 tr{
     height: 100px;
 }
+
+#tagChoices{
+    display: inline-block;
+    width: 200px;
+    height: 150px;
+}
