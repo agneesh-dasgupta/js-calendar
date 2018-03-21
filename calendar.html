@@ -189,11 +189,7 @@ var currentMonth = new Month(2018, 2);
                 xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 xmlHttp.addEventListener("load", function(event){
             	var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
-                console.log(jsonData[0]);
-                console.log(jsonData[0].eventMonth);
-                var checkboxes = document.getElementsByClassName("tag2");
-                console.log("tag:" + jsonData[0].tag);
-                
+                var checkboxes = document.getElementsByClassName("tag2");                
             	for(var a = 0; a<jsonData.length; a++){
                     var compareString = (jsonData[a].eventMonth-1) + "-" + jsonData[a].eventDay;
                     if(jsonData[a].tag === null || jsonData[a].tag === ""){

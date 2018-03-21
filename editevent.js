@@ -4,7 +4,6 @@ function edit(event){
     var newDate = document.getElementById("editdate").value;
     var newTime = document.getElementById("edittime").value;
     var eventid = event.target.className;
-    console.log("Working "+eventid);
     var eventyear = parseInt(newDate.substring(0,4));
     var eventmonth = parseInt(newDate.substring(5,7));
     var eventday = parseInt(newDate.substring(8,10));
