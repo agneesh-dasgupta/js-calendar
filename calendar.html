@@ -6,6 +6,7 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         
         <title> Calendar </title>
+        <meta charset="utf-8">
         <link href="calendarStyles.css" rel="stylesheet">
     </head>
     <body>
@@ -53,13 +54,13 @@
         <h3 id = "currentmonth"></h3>
         <table id = "calendar">
         </table>
-        <script type="text/javascript" src="ajax.js"></script>
-        <script type = "text/javascript" src = "calendar.min.js"></script>
-        <script type = "text/javascript" src = "register.js"></script><!-- load the JavaScript file -->
-        <script type = "text/javascript" src = "addevent.js"></script>
-        <script type = "text/javascript" src = "logout.js"></script>
-        <script type = "text/javascript" src = "editevent.js"></script>
-        <script type = "text/javascript"src = "deleteevent.js"></script>
+        <script src="ajax.js"></script>
+        <script src = "calendar.min.js"></script>
+        <script src = "register.js"></script><!-- load the JavaScript file -->
+        <script src = "addevent.js"></script>
+        <script src = "logout.js"></script>
+        <script src = "editevent.js"></script>
+        <script src = "deleteevent.js"></script>
         <script>
             var currentMonth = new Month(2018, 2);
             makeCalendar();
