@@ -86,6 +86,7 @@
         Time: <input type = "time" id = "edittime"/>
              </p>
         <input type = "button" id = "submitedit" value = "Edit event">
+        <input type = "button" id = "submitdelete" value = "Delete event">
         </form>
         </div>
         <h3 id = "currentmonth"></h3>
@@ -100,7 +101,7 @@
         <script src = "deleteevent.js"></script>
         <script src = "viewevent.js"></script>
         <script>
-            var currentMonth = new Month(2018, 2);
+var currentMonth = new Month(2018, 2);
             makeCalendar();
             function makeCalendar(){
                 var monthtext = null;
@@ -195,29 +196,17 @@
                 
             	for(var a = 0; a<jsonData.length; a++){
                     var compareString = (jsonData[a].eventMonth-1) + "-" + jsonData[a].eventDay;
-                    if(jsonData[a].tag == null || jsonData[a].tag == ""){
+                    if(jsonData[a].tag === null || jsonData[a].tag === ""){
                         for(var d in daysinMonth){
                             if(compareString==daysinMonth[d].id){
-                                placeButton = document.createElement("input");
                                 editButton = document.createElement("input");
-                                placeButton.type = "button";
                                 editButton.type = "button";
-                                placeButton.value = "Delete";
-                                editButton.value = "Edit";
-                                placeButton.id = jsonData[a].eventid;
-                                placeButton.className = "d";
+                                editButton.value = "View/Edit";
                                 editButton.id = jsonData[a].eventid;
-                               placeButton.addEventListener("click", function(event){
-                                        deleteAjax(event);
-                                }, false);
-                                editButton.addEventListener("click", function(event){
-                                        editAjax(event);
-                                }, false);
-                                
+                                editButton.addEventListener("click", addEvent, false);
                                 breakTag = document.createElement("br");
                                 daysinMonth[d].appendChild(breakTag);
                                 daysinMonth[d].appendChild(document.createTextNode(jsonData[a].eventTitle));
-                                daysinMonth[d].appendChild(placeButton);
                                 daysinMonth[d].appendChild(editButton);
                                 
                             }
@@ -228,26 +217,14 @@
                         compareString = (jsonData[a].eventMonth-1) + "-" + jsonData[a].eventDay;
                         for(var da in daysinMonth){
                             if(compareString==daysinMonth[da].id){
-                                placeButton = document.createElement("input");
                                 editButton = document.createElement("input");
-                                placeButton.type = "button";
                                 editButton.type = "button";
-                                placeButton.value = "Delete";
-                                editButton.value = "Edit";
-                                placeButton.id = jsonData[a].eventid;
-                                placeButton.className = "d";
+                                editButton.value = "View/Edit";
                                 editButton.id = jsonData[a].eventid;
-                               placeButton.addEventListener("click", function(event){
-                                        deleteAjax(event);
-                                }, false);
-                                editButton.addEventListener("click", function(event){
-                                        editAjax(event);
-                                }, false);
-                                
+                                editButton.addEventListener("click",addEvent, false);
                                 breakTag = document.createElement("br");
                                 daysinMonth[da].appendChild(breakTag);
                                 daysinMonth[da].appendChild(document.createTextNode(jsonData[a].eventTitle));
-                                daysinMonth[da].appendChild(placeButton);
                                 daysinMonth[da].appendChild(editButton);
                             }
                         }
@@ -257,26 +234,15 @@
                         compareString = (jsonData[a].eventMonth-1) + "-" + jsonData[a].eventDay;
                         for(var da2 in daysinMonth){
                             if(compareString==daysinMonth[da2].id){
-                                placeButton = document.createElement("input");
                                 editButton = document.createElement("input");
-                                placeButton.type = "button";
                                 editButton.type = "button";
-                                placeButton.value = "Delete";
-                                editButton.value = "Edit";
-                                placeButton.id = jsonData[a].eventid;
-                                placeButton.className = "d";
+                                editButton.value = "View/Edit";
                                 editButton.id = jsonData[a].eventid;
-                               placeButton.addEventListener("click", function(event){
-                                        deleteAjax(event);
-                                }, false);
-                                editButton.addEventListener("click", function(event){
-                                        editAjax(event);
-                                }, false);
+                                editButton.addEventListener("click",addEvent, false);
                                 
                                 breakTag = document.createElement("br");
                                 daysinMonth[da2].appendChild(breakTag);
                                 daysinMonth[da2].appendChild(document.createTextNode(jsonData[a].eventTitle));
-                                daysinMonth[da2].appendChild(placeButton);
                                 daysinMonth[da2].appendChild(editButton);
                             }
                         }
@@ -286,26 +252,14 @@
                         compareString = (jsonData[a].eventMonth-1) + "-" + jsonData[a].eventDay;
                         for(var day in daysinMonth){
                             if(compareString==daysinMonth[day].id){
-                                placeButton = document.createElement("input");
                                 editButton = document.createElement("input");
-                                placeButton.type = "button";
                                 editButton.type = "button";
-                                placeButton.value = "Delete";
-                                editButton.value = "Edit";
-                                placeButton.id = jsonData[a].eventid;
-                                placeButton.className = "d";
+                                editButton.value = "View/Edit";
                                 editButton.id = jsonData[a].eventid;
-                               placeButton.addEventListener("click", function(event){
-                                        deleteAjax(event);
-                                }, false);
-                                editButton.addEventListener("click", function(event){
-                                        editAjax(event);
-                                }, false);
-                                
+                                editButton.addEventListener("click", addEvent, false);
                                 breakTag = document.createElement("br");
                                 daysinMonth[day].appendChild(breakTag);
                                 daysinMonth[day].appendChild(document.createTextNode(jsonData[a].eventTitle));
-                                daysinMonth[day].appendChild(placeButton);
                                 daysinMonth[day].appendChild(editButton);
                             }
                         }
@@ -315,26 +269,14 @@
                         compareString = (jsonData[a].eventMonth-1) + "-" + jsonData[a].eventDay;
                         for(var da1 in daysinMonth){
                             if(compareString==daysinMonth[da1].id){
-                                placeButton = document.createElement("input");
                                 editButton = document.createElement("input");
-                                placeButton.type = "button";
                                 editButton.type = "button";
-                                placeButton.value = "Delete";
-                                editButton.value = "Edit";
-                                placeButton.id = jsonData[a].eventid;
-                                placeButton.className = "d";
+                                editButton.value = "View/Edit";
                                 editButton.id = jsonData[a].eventid;
-                               placeButton.addEventListener("click", function(event){
-                                        deleteAjax(event);
-                                }, false);
-                                editButton.addEventListener("click", function(event){
-                                        editAjax(event);
-                                }, false);
-                                
+                                editButton.addEventListener("click", addEvent, false);
                                 breakTag = document.createElement("br");
                                 daysinMonth[da1].appendChild(breakTag);
                                 daysinMonth[da1].appendChild(document.createTextNode(jsonData[a].eventTitle));
-                                daysinMonth[da1].appendChild(placeButton);
                                 daysinMonth[da1].appendChild(editButton);
                             }
                         }
@@ -344,6 +286,9 @@
             }, false); // Bind the callback to the load event
                 xmlHttp.send(dataString); // Send the data
             }
+				function addEvent(event){
+  					editAjax(event);
+							}
                 //changing the months using button
             document.getElementById("next_month_btn").addEventListener("click", function(event){
                 currentMonth = currentMonth.nextMonth(); // Previous month would be currentMonth.prevMonth()
@@ -361,6 +306,7 @@
             document.getElementsByClassName("tag2")[1].addEventListener("click", showEvents, false);
             document.getElementsByClassName("tag2")[2].addEventListener("click", showEvents, false);
             document.getElementsByClassName("tag2")[3].addEventListener("click", showEvents, false);
+            
             
         
     

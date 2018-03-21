@@ -21,6 +21,7 @@ function editAjax(event){
             $('#editdate').val(fullDate);
             $('#edittime').val(jsonData.eventTime);
             $('#submitedit').attr('class', eventid);
+            $('#submitdelete').attr('class', eventid);
 		}else{
 			alert("Event not deleted"+jsonData.message);
 		}

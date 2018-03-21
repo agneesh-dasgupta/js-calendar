@@ -1,7 +1,5 @@
 function deleteAjax(event){
-        
-        var eventid = event.target.id;
-        
+        var eventid = event.target.className;
         var dataString = "eventid=" + encodeURIComponent(eventid);
         var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
 	xmlHttp.open("POST", "deleteEvent.php", true); // Starting a POST request (NEVER send passwords as GET variables!!!)
@@ -17,6 +15,7 @@ function deleteAjax(event){
 	xmlHttp.send(dataString); // Send the data
     makeCalendar();
 }
+document.getElementById("submitdelete").addEventListener("click", deleteAjax, false);
 
 
 

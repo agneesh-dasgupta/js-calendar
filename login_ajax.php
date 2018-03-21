@@ -18,7 +18,6 @@ $stmt->execute();
 $stmt->bind_result($cnt, $user_id, $pwd_hash);
 $stmt->fetch();
 $password_guess = $_POST['password'];
-
 if($cnt == 1 && password_verify($password_guess, $pwd_hash)){
 	// Login succeeded!
 	ini_set("session.cookie_httponly", 1);
