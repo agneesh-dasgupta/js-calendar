@@ -12,6 +12,7 @@ if(isset($_POST['eventdescription'])){
 $eventyear = (int) $_POST['eventyear'];
 $eventmonth = (int) $_POST['eventmonth'];
 $eventday = (int) $_POST['eventday'];
+$eventtime = $_POST['eventtime'];
 
 if( !preg_match('/^[\w_\-]+$/', $username) ){
         echo json_encode(array(
@@ -22,7 +23,7 @@ if( !preg_match('/^[\w_\-]+$/', $username) ){
 }
 
 
-$stmt = $mysqli->prepare("insert into events (username, eventTitle, eventYear, eventMonth, eventDay, eventDescription) values (?, ?, ?, ?, ?, ?)");
+$stmt = $mysqli->prepare("insert into events (username, eventTitle, eventYear, eventMonth, eventDay, eventDescription, eventtime) values (?, ?, ?, ?, ?, ?, ?)");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
 	echo json_encode(array(
@@ -32,7 +33,7 @@ if(!$stmt){
 	exit;
 }
 
-$stmt->bind_param('ssiiis', $username, $eventtitle, $eventyear,$eventmonth, $eventday, $eventdescription);
+$stmt->bind_param('ssiiiss', $username, $eventtitle, $eventyear,$eventmonth, $eventday, $eventdescription, $eventtime);
 $stmt->execute();
 $stmt->close();
 echo json_encode(array(
