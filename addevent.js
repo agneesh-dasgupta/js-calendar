@@ -23,6 +23,11 @@ function addEventAjax(event){
 			alert("Event successfully added");
 			$("#addevent").show();
             $("#logout").show();
+            $(".tag").prop('checked',false);
+            $("#title").val("");
+            $("#description").val("");
+            $("#date").val("");
+            $("#time").val("");
 		}else{
 			alert("Event not added  "+jsonData.message);
 		}

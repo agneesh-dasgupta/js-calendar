@@ -11,6 +11,8 @@ function registerAjax(event){
 		var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
 		if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
 			alert("You were successfully registered");
+			$("#newusername").val("");
+			$("#newpassword").val("");
 		}else{
 			alert("You were not registered.  "+jsonData.message);
 		}
