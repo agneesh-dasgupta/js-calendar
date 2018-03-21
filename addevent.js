@@ -8,13 +8,11 @@ function addEventAjax(event){
     var eventday = parseInt(eventdate.substring(8,10));
     var tags = document.getElementsByClassName("tag");
     var eventtag = "";
-    
     for(var i=0 ; i<tags.length ; i++){
         if(tags[i].checked){
             eventtag = tags[i].value;
         }
     }
-    
     var dataString = "eventtitle=" + encodeURIComponent(eventtitle) + "&eventdescription=" + encodeURIComponent(eventdescription)+ "&eventyear="+encodeURIComponent(eventyear)+ "&eventmonth="+encodeURIComponent(eventmonth)+"&eventday="+encodeURIComponent(eventday) +"&eventtime=" +encodeURIComponent(eventtime)+"&eventtag=" +encodeURIComponent(eventtag);
     var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
 	xmlHttp.open("POST", "addevent.php", true); // Starting a POST request (NEVER send passwords as GET variables!!!)
@@ -31,5 +29,6 @@ function addEventAjax(event){
 	}, false); // Bind the callback to the load event
 	xmlHttp.send(dataString); // Send the data
     makeCalendar();
+    //showEvents();
 }
 document.getElementById("submitnewevent").addEventListener("click", addEventAjax, false);

@@ -15,7 +15,7 @@ function deleteAjax(event){
 		}
 	}, false); // Bind the callback to the load event
 	xmlHttp.send(dataString); // Send the data
-        makeCalendar();
+    makeCalendar();
 }
 
 
