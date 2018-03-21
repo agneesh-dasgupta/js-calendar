@@ -1,3 +1,4 @@
+//AJAX function to open the edit and view dialog box when button is clicked
 function editAjax(event){
     var eventid = event.target.id;
     var dataString = "eventid=" + encodeURIComponent(eventid);

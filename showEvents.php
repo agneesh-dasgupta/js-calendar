@@ -1,4 +1,5 @@
 <?php
+//Returns all events for a user using a JSON array
 require 'database.php';
 ini_set("session.cookie_httponly", 1);
 session_start();
@@ -18,12 +19,12 @@ $stmt = $mysqli->prepare("select eventid, eventTitle, eventMonth, eventDay, tag 
     $index = 0;
     while($row=$result->fetch_assoc()){
         $event = array(
-            "eventid" => $row['eventid'],
-            "eventMonth" => $row['eventMonth'],
-            "eventTitle" => $row['eventTitle'],
-            "eventDay" => $row['eventDay'],
-            "tag" => $row['tag'],
-            "currentUser" => $username
+            "eventid" => htmlentities($row['eventid']),
+            "eventMonth" => htmlentities($row['eventMonth']),
+            "eventTitle" => htmlentities($row['eventTitle']),
+            "eventDay" => htmlentities($row['eventDay']),
+            "tag" => htmlentities($row['tag']),
+            "currentUser" => htmlentities($username)
         );
         $eventArray[$index] = $event;
         $index++;

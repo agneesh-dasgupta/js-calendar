@@ -1,3 +1,4 @@
+//AJAX function to register a new user
 function registerAjax(event){
 	//a
 	var username = document.getElementById("newusername").value; // Get the username from the form

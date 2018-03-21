@@ -1,3 +1,4 @@
+//AJAX function to log in a user.
 function loginAjax(event){
 	var username = document.getElementById("username").value; // Get the username from the form
 	var password = document.getElementById("password").value; // Get the password from the form
@@ -10,6 +11,8 @@ function loginAjax(event){
 		var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
 		if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
 			alert("You've been Logged In!");
+			$("#token").val(jsonData.token);
+			console.log(jsonData.token);
 			$("#addevent").show();
 			$("#logout").show();
 			$("#username").val('');

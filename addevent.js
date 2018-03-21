@@ -1,3 +1,4 @@
+// AJAX function to add an event to the database and remake the calendar.
 function addEventAjax(event){
     var eventtitle = document.getElementById("title").value; // Get the username from the form
 	var eventdescription = document.getElementById("description").value;

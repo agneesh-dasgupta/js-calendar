@@ -1,4 +1,5 @@
 <?php
+//Validates and authenticates a user
 require 'database.php';
 header("Content-Type: application/json"); // Since we are sending a JSON response here (not an HTML document), set the MIME Type to application/json
 $username = $_POST['username'];
@@ -23,8 +24,10 @@ if($cnt == 1 && password_verify($password_guess, $pwd_hash)){
 	ini_set("session.cookie_httponly", 1);
 	session_start();
 	$_SESSION['username'] = $user_id;
+	$_SESSION['token'] = substr(md5(rand()), 0, 10);
 	echo json_encode(array(
-	"success" => true
+	"success" => true,
+	"token" => $_SESSION['token']
 	));
 	exit;
 } else{

@@ -1,11 +1,13 @@
+
 <?php
+//Adds a new event to the events database
 require 'database.php';
 ini_set("session.cookie_httponly", 1);
 session_start();
 header("Content-Type: application/json");
 $username = $_SESSION['username'];
 $eventtitle = $_POST['eventtitle'];
-$eventdescription = null;
+$eventdescription = null; 
 if(isset($_POST['eventdescription'])){
     $eventdescription = $_POST['eventdescription'];
 }

@@ -1,6 +1,8 @@
+//AJAX function to delete an event and remake calendar
 function deleteAjax(event){
         var eventid = event.target.className;
-        var dataString = "eventid=" + encodeURIComponent(eventid);
+        var token = document.getElementById("token").value;
+        var dataString = "eventid=" + encodeURIComponent(eventid)+"&token="+encodeURIComponent(token);
         var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
 	xmlHttp.open("POST", "deleteEvent.php", true); // Starting a POST request (NEVER send passwords as GET variables!!!)
 	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // It's easy to forget this line for POST requests

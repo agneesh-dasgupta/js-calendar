@@ -1,3 +1,4 @@
+//AJAX function to log out a user. 
 function logoutAjax(event){
     var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
 	xmlHttp.open("GET", "logout.php", true); // Starting a POST request (NEVER send passwords as GET variables!!!)

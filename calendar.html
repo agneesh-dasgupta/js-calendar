@@ -10,6 +10,7 @@
         <link href="calendarStyles.css" rel="stylesheet">
     </head>
     <body>
+        <!-- Different divs for each feature -->
         <h1>AD-DA Calendar</h1>
         <div id="loginBox">
             <h4>Login existing User:</h4>
@@ -87,9 +88,10 @@
              </p>
         <input type = "button" id = "submitedit" value = "Edit event">
         <input type = "button" id = "submitdelete" value = "Delete event">
+        <input type = "hidden" id = "token" value = " ">
         </form>
         </div>
-        <h3 id = "currentmonth"></h3>
+        <h3 id = "currentmonth"> " "</h3>
         <table id = "calendar">
         </table>
         <script src="ajax.js"></script>
@@ -103,6 +105,7 @@
         <script>
 var currentMonth = new Month(2018, 2);
             makeCalendar();
+            //Makes the calendar from scratch according to currentMonth
             function makeCalendar(){
                 var monthtext = null;
                 if(currentMonth.month===0){
@@ -169,7 +172,7 @@ var currentMonth = new Month(2018, 2);
                 }   
                 showEvents();
             }
-            
+            //Displays all events in the calendar, according to current month, username, and tag preferences
             function showEvents(){
                 var weeks = currentMonth.getWeeks();
                 var counter = 0;
@@ -282,6 +285,7 @@ var currentMonth = new Month(2018, 2);
             }, false); // Bind the callback to the load event
                 xmlHttp.send(dataString); // Send the data
             }
+            //Adds the edit function to the button for each event
 				function addEvent(event){
   					editAjax(event);
 							}

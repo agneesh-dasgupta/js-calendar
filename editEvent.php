@@ -1,4 +1,5 @@
 <?php
+    //Returns all the details on an event to be used in the view/edit dialog box
     require 'database.php';
     ini_set("session.cookie_httponly", 1);
     session_start();

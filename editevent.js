@@ -1,3 +1,4 @@
+//AJAX function to update the database and remake calendar when an event is edited
 function edit(event){
     var newTitle = document.getElementById("edittitle").value;
     var newDescription = document.getElementById("editdescription").value;
@@ -7,7 +8,8 @@ function edit(event){
     var eventyear = parseInt(newDate.substring(0,4));
     var eventmonth = parseInt(newDate.substring(5,7));
     var eventday = parseInt(newDate.substring(8,10));
-    var dataString = "eventtitle=" + encodeURIComponent(newTitle) + "&eventdescription=" + encodeURIComponent(newDescription)+ "&eventyear="+encodeURIComponent(eventyear)+ "&eventmonth="+encodeURIComponent(eventmonth)+"&eventday="+encodeURIComponent(eventday)+"&eventid="+encodeURIComponent(eventid)+"&eventtime="+encodeURIComponent(newTime);
+    var token = document.getElementById("token").value;
+    var dataString = "eventtitle=" + encodeURIComponent(newTitle) + "&eventdescription=" + encodeURIComponent(newDescription)+ "&eventyear="+encodeURIComponent(eventyear)+ "&eventmonth="+encodeURIComponent(eventmonth)+"&eventday="+encodeURIComponent(eventday)+"&eventid="+encodeURIComponent(eventid)+"&eventtime="+encodeURIComponent(newTime)+"&token="+encodeURIComponent(token);
     var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
 	xmlHttp.open("POST", "updateEvent.php", true); // Starting a POST request (NEVER send passwords as GET variables!!!)
 	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // It's easy to forget this line for POST requests
