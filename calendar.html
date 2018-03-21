@@ -2,6 +2,9 @@
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        
         <title> Calendar </title>
         <link href="calendarStyles.css" rel="stylesheet">
     </head>
@@ -37,7 +40,16 @@
             <button id="next_month_btn"></button>
         </div>
         <br>
-        
+        <div id="edit_dialog" title="New Entry" hidden>
+        <form>
+             <p>
+        Event Title:<input type="text" id = "edittitle"  />
+        Event Description:<input type = "text" id = "editdescription"/>
+        Date: <input type = "date" id = "editdate"/>
+        Time: <input type = "time" id = "edittime"/>
+             </p>
+        </form>
+        </div>
         <h3 id = "currentmonth"></h3>
         <table id = "calendar">
         </table>
@@ -46,8 +58,8 @@
         <script type = "text/javascript" src = "register.js"></script><!-- load the JavaScript file -->
         <script type = "text/javascript" src = "addevent.js"></script>
         <script type = "text/javascript" src = "logout.js"></script>
+        <script type = "text/javascript" src = "editevent.js"></script>
         <script type = "text/javascript"src = "deleteevent.js"></script>
-        
         <script>
             var currentMonth = new Month(2018, 2);
             makeCalendar();
@@ -143,10 +155,10 @@
                             placeButton.className = "d";
                             editButton.id = jsonData[a].eventid;
                            placeButton.addEventListener("click", function(event){
-                                deleteAjax(event);
+                                    deleteAjax(event);
                                 }, false);
                             editButton.addEventListener("click", function(event){
-                                alert(event.target.id);
+                                    editAjax(event);
                                 }, false);
                             
                             breakTag = document.createElement("br");
