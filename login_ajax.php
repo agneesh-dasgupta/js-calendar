@@ -21,6 +21,7 @@ $password_guess = $_POST['password'];
 
 if($cnt == 1 && password_verify($password_guess, $pwd_hash)){
 	// Login succeeded!
+	ini_set("session.cookie_httponly", 1);
 	session_start();
 	$_SESSION['username'] = $user_id;
 	echo json_encode(array(
