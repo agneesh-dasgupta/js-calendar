@@ -17,7 +17,7 @@ function deleteAjax(event){
 	xmlHttp.send(dataString); // Send the data
         makeCalendar();
 }
-document.getElementById("submitnewevent").addEventListener("click", addEventAjax, false);
+
 
 
 
