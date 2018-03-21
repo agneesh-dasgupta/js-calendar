@@ -19,6 +19,7 @@ function editAjax(event){
             }
             var fullDate = jsonData.eventYear + "-" +editMonth+ "-" + editDate;
             $('#editdate').val(fullDate);
+            $('#edittime').val(jsonData.eventTime);
             $('#submitedit').attr('class', eventid);
 		}else{
 			alert("Event not deleted"+jsonData.message);
