@@ -6,7 +6,16 @@ function addEventAjax(event){
     var eventyear = parseInt(eventdate.substring(0,4));
     var eventmonth = parseInt(eventdate.substring(5,7));
     var eventday = parseInt(eventdate.substring(8,10));
-    var dataString = "eventtitle=" + encodeURIComponent(eventtitle) + "&eventdescription=" + encodeURIComponent(eventdescription)+ "&eventyear="+encodeURIComponent(eventyear)+ "&eventmonth="+encodeURIComponent(eventmonth)+"&eventday="+encodeURIComponent(eventday) +"&eventtime=" +encodeURIComponent(eventtime);
+    var tags = document.getElementsByClassName("tag");
+    var eventtag = "";
+    
+    for(var i=0 ; i<tags.length ; i++){
+        if(tags[i].checked){
+            eventtag = tags[i].value;
+        }
+    }
+    
+    var dataString = "eventtitle=" + encodeURIComponent(eventtitle) + "&eventdescription=" + encodeURIComponent(eventdescription)+ "&eventyear="+encodeURIComponent(eventyear)+ "&eventmonth="+encodeURIComponent(eventmonth)+"&eventday="+encodeURIComponent(eventday) +"&eventtime=" +encodeURIComponent(eventtime)+"&eventtag=" +encodeURIComponent(eventtag);
     var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
 	xmlHttp.open("POST", "addevent.php", true); // Starting a POST request (NEVER send passwords as GET variables!!!)
 	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // It's easy to forget this line for POST requests

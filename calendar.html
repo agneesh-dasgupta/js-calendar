@@ -32,6 +32,21 @@
             <input type = "text" id = "description" name = "neweventdescription" placeholder="Event Description">
             <input type = "date" id = "date" name = "neweventdate">
             <input type = "time" id = "time" name = "neweventtime">
+            <p>
+                <input type="radio" name="tag" value="work" class="tag">
+                <label for="add">Work</label>
+    
+                <input type="radio" name="tag" value="school" class="tag">
+                <label for="sub">School</label>
+                <br>
+        
+                <input type="radio" name="tag" value="fun" class="tag">
+                <label for="mult">Fun</label>
+            
+                <input type="radio" name="tag" value="other" class="tag">
+                <label for="div">Other</label>
+            
+            </p>
             <button id = "submitnewevent"> Add new event</button>
         </div>
         <br>
@@ -44,10 +59,10 @@
         <div id="edit_dialog" title="New Entry" hidden>
         <form>
              <p>
-        Event Title:<input type="text" id = "edittitle"  />
-        Event Description:<input type = "text" id = "editdescription"/>
-        Date: <input type = "date" id = "editdate"/>
-        Time: <input type = "time" id = "edittime"/>
+                Event Title:<input type="text" id = "edittitle"  />
+                Event Description:<input type = "text" id = "editdescription"/>
+                Date: <input type = "date" id = "editdate"/>
+                Time: <input type = "time" id = "edittime"/>
              </p>
         </form>
         </div>
