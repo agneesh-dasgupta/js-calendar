@@ -136,22 +136,32 @@
                             editButton = document.createElement("input");
                             placeButton.type = "button";
                             editButton.type = "button";
-                            placeButton.value = "delete";
-                            editButton.value = "edit";
+                            placeButton.value = "Delete";
+                            editButton.value = "Edit";
                             placeButton.id = jsonData[a].eventid;
                             placeButton.className = "d";
+                            editButton.id = jsonData[a].eventid;
                            placeButton.addEventListener("click", function(event){
                                 alert(event.target.id);
                                 }, false);
-                            editButton.className = jsonData[a].eventid;
+                            editButton.addEventListener("click", function(event){
+                                alert(event.target.id);
+                                }, false);
+                            
                             breakTag = document.createElement("br");
                             daysinMonth[d].appendChild(breakTag);
-                            daysinMonth[d].innerHTML += jsonData[a].eventTitle;
+                            daysinMonth[d].appendChild(document.createTextNode(jsonData[a].eventTitle));
                             daysinMonth[d].appendChild(placeButton);
                             daysinMonth[d].appendChild(editButton);
                         }
                     }
                 }
+                 var buttons = document.getElementsByClassName("d");
+               /* for(var b = 0; b<buttons.length; b++){
+                    buttons[b].addEventListener("click", function(event){
+                        alert(event.target.id);
+                    }, false);
+                }*/
             }, false); // Bind the callback to the load event
                 xmlHttp.send(dataString); // Send the data
             }
