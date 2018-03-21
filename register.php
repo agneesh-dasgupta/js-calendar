@@ -1,5 +1,5 @@
 <?php
-//a
+//Validates and registers a new user
 require 'database.php';
 header("Content-Type: application/json");
     $username = $_POST['username'];
